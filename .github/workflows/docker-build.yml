@@ -18,12 +18,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 步骤3：登录Docker Hub
+      # 步骤3：登录Docker Hub（硬编码账号，解决密钥读取失败问题）
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}  # 读取你配置的账号密钥
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}  # 读取你配置的令牌密钥
+          username: liuxintian  # 直接填写你的Docker Hub账号，替代密钥读取
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}  # 令牌仍用密钥（避免泄露）
 
       # 步骤4：构建并推送Docker镜像
       - name: Build and push
